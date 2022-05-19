@@ -1,6 +1,7 @@
 const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const WindiCSSWebpackPlugin = require("windicss-webpack-plugin");
 
 module.exports = {
   // 输入
@@ -24,7 +25,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: "ts-loader",
+        use: "esbuild-loader",
       },
       {
         test: /\.css$/i,
@@ -59,6 +60,7 @@ module.exports = {
       template: path.join(__dirname, "../public/popup.html"),
       filename: "popup.html",
     }),
+    new WindiCSSWebpackPlugin(),
   ],
   devServer: {
     // 自动打开浏览器
