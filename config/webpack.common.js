@@ -7,7 +7,7 @@ module.exports = {
   // 输入
   entry: {
     background: "/src/background/index.ts",
-    popup: "/src/popup/index.ts",
+    popup: "/src/popup/index.tsx",
     content: "/src/content/index.ts",
   },
   output: {
@@ -25,7 +25,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: "esbuild-loader",
+        use: "ts-loader",
       },
       {
         test: /\.css$/i,
