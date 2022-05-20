@@ -1,11 +1,14 @@
 // import React, { useEffect, useState } from "react";
 // import ReactDOM from "react-dom";
-import { Tabs } from "antd";
+import { Tabs, Typography } from "antd";
 import "../global.less";
 import "windi.css";
 import { useEffect, useState } from "react";
 import ReactDOM = require("react-dom");
 import React = require("react");
+import { tabsOption } from "./sourceData";
+import styles from "./index.module.less";
+const { Link } = Typography;
 
 const { TabPane } = Tabs;
 
@@ -13,57 +16,40 @@ const Popup = () => {
   const [count, setCount] = useState(0);
   const [currentURL, setCurrentURL] = useState<string>();
 
-  // useEffect(() => {
-  //   chrome.action.setBadgeText({ text: count.toString() })
-  // }, [count])
-
-  // useEffect(() => {
-  //   chrome.tabs.query(
-  //     { active: true, currentWindow: true },
-  //     function (tabs: any) {
-  //       setCurrentURL(tabs[0].url);
-  //     }
-  //   );
-  // }, []);
-
-  // const changeBackground = () => {
-  //   chrome.tabs.query(
-  //     { active: true, currentWindow: true },
-  //     function (tabs: any) {
-  //       const tab = tabs[0];
-  //       if (tab.id) {
-  //         chrome.tabs.sendMessage(
-  //           tab.id,
-  //           {
-  //             color: "#555555",
-  //           },
-  //           (msg: any) => {
-  //             console.log("result message:", msg);
-  //           }
-  //         );
-  //       }
-  //     }
-  //   );
-  // };
+  // 判断显示内容
+  const getTabsDom = (key: string) => {
+    const domObj = {
+      [tabsOption[0].key]: (
+        <div className={styles.g_flex}>
+          <Link href="https://www.newrank.cn/" title="新榜">
+            新榜
+          </Link>
+          <Link href="https://www.baidu.com/" title="百度">
+            百度
+          </Link>
+          <Link href="https://lpl.qq.com/" title="lol">
+            lol
+          </Link>
+          <Link href="https://zh.javascript.info/" title="js教程">
+            js教程
+          </Link>
+        </div>
+      ),
+      [tabsOption[1].key]: <div>管理</div>,
+      [tabsOption[2].key]: <div>设置</div>,
+    };
+    return domObj[key];
+  };
 
   return (
-    <div className="w-362px h-524px">
+    <div className="wd-w-362px wd-h-524px">
       <div>
         <Tabs centered>
-          <TabPane tab="工具" key="1">
-            <div className="flex justify-around">
-              <a href="https://www.newrank.cn/">新榜</a>
-              <a href="https://www.baidu.com/">百度</a>
-              <a href="https://www.sina.com.cn/">新浪</a>
-              <a href="https://www.qq.com/">腾讯</a>
-            </div>
-          </TabPane>
-          <TabPane tab="管理" key="2">
-            <p>管理</p>
-          </TabPane>
-          <TabPane tab="设置" key="3">
-            <p>设置</p>
-          </TabPane>
+          {tabsOption.map((item: any) => (
+            <TabPane tab={item.label} key={item.key}>
+              {getTabsDom(item.key)}
+            </TabPane>
+          ))}
         </Tabs>
       </div>
     </div>

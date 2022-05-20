@@ -13,6 +13,8 @@ module.exports = {
   output: {
     path: path.join(__dirname, "../dist/js"),
     filename: "[name].js",
+    // 清除之前生成的文件
+    clean: true,
   },
   // Uncaught EvalError: Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self'".
   optimization: {
