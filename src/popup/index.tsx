@@ -1,35 +1,49 @@
+// import React, { useEffect, useState } from "react";
+// import ReactDOM from "react-dom";
 import { Tabs } from "antd";
+import "../global.less";
 import "windi.css";
+import { useEffect, useState } from "react";
 import ReactDOM = require("react-dom");
 import React = require("react");
 
 const { TabPane } = Tabs;
 
 const Popup = () => {
-  const [count, setCount] = React.useState(0);
-  const [currentURL, setCurrentURL] = React.useState<string>();
+  const [count, setCount] = useState(0);
+  const [currentURL, setCurrentURL] = useState<string>();
 
   // useEffect(() => {
-  //   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-  //     setCurrentURL(tabs[0].url);
-  //   });
+  //   chrome.action.setBadgeText({ text: count.toString() })
+  // }, [count])
+
+  // useEffect(() => {
+  //   chrome.tabs.query(
+  //     { active: true, currentWindow: true },
+  //     function (tabs: any) {
+  //       setCurrentURL(tabs[0].url);
+  //     }
+  //   );
   // }, []);
 
   // const changeBackground = () => {
-  //   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-  //     const tab = tabs[0];
-  //     if (tab.id) {
-  //       chrome.tabs.sendMessage(
-  //         tab.id,
-  //         {
-  //           color: "#555555",
-  //         },
-  //         (msg) => {
-  //           console.log("result message:", msg);
-  //         }
-  //       );
+  //   chrome.tabs.query(
+  //     { active: true, currentWindow: true },
+  //     function (tabs: any) {
+  //       const tab = tabs[0];
+  //       if (tab.id) {
+  //         chrome.tabs.sendMessage(
+  //           tab.id,
+  //           {
+  //             color: "#555555",
+  //           },
+  //           (msg: any) => {
+  //             console.log("result message:", msg);
+  //           }
+  //         );
+  //       }
   //     }
-  //   });
+  //   );
   // };
 
   return (
@@ -56,6 +70,7 @@ const Popup = () => {
   );
 };
 
+console.log(document.getElementById("root"));
 ReactDOM.render(
   <React.StrictMode>
     <Popup />

@@ -11,5 +11,13 @@
   "action": {
     "default_title": "doubleyong的",
     "default_popup": "popup.html"
-  }
+  },
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["js/vendor.js"]
+    }
+  ],
+  "host_permissions": ["<all_urls>"]
 }

@@ -1,31 +1,34 @@
 const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WindiCSSWebpackPlugin = require("windicss-webpack-plugin");
+const src = path.join(__dirname, "..", "src");
 
 module.exports = {
-  // 输入
   entry: {
-    background: "/src/background/index.ts",
-    popup: "/src/popup/index.tsx",
-    content: "/src/content/index.ts",
+    popup: path.join(src, "popup/index.tsx"),
+    // options: path.join(src, "options.tsx"),
+    // background: path.join(src, "background/index.ts"),
+    // content_script: path.join(src, "content_script.tsx"),
   },
   output: {
-    path: path.resolve(__dirname, "../dist"),
+    path: path.join(__dirname, "../dist/js"),
     filename: "[name].js",
-    // 清除之前生成的文件
-    clean: true,
   },
-  // 识别.js .tsx .jsx的文件
-  resolve: {
-    extensions: [".ts", ".tsx", ".js"],
+  // Uncaught EvalError: Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self'".
+  optimization: {
+    splitChunks: {
+      name: "vendor",
+      chunks(chunk) {
+        return chunk.name !== "background";
+      },
+    },
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        exclude: /node_modules/,
         use: "ts-loader",
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/i,
@@ -45,26 +48,14 @@ module.exports = {
       },
     ],
   },
-  externals: {
-    react: "React",
-    "react-dom": "ReactDOM",
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"],
   },
   plugins: [
-    new CopyPlugin({
-      patterns: [
-        { from: "src/manifest.json", to: "manifest.json" },
-        { from: "src/assets/images", to: "icons" },
-      ],
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, "../public/popup.html"),
-      filename: "popup.html",
-    }),
     new WindiCSSWebpackPlugin(),
+    new CopyPlugin({
+      patterns: [{ from: ".", to: "../", context: "public" }],
+      options: {},
+    }),
   ],
-  devServer: {
-    // 自动打开浏览器
-    open: true,
-    port: 9624,
-  },
 };
