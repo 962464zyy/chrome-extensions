@@ -19,5 +19,6 @@
       "js": ["js/vendor.js"]
     }
   ],
-  "host_permissions": ["<all_urls>"]
+  "host_permissions": ["<all_urls>"],
+  "options_page": "options.html"
 }
