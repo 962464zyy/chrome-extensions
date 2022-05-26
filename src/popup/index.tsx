@@ -10,7 +10,7 @@ import { tabsOption } from "./sourceData";
 import styles from "./index.module.less";
 import Tool from "./pages/Tool";
 import Manage from "./pages/Manage";
-import SetPage from "./pages/SetPage";
+import SetPage from "./pages/Setting";
 import {
   BrowserRouter,
   Routes,
