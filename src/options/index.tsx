@@ -29,7 +29,7 @@ const Options: FC<any> = (props: Props) => {
   const saveLimit = () => {
     console.log("saveLimit");
     //@ts-ignore
-    chrome.storage.sync.set({ limit }, () => {
+    chrome.storage.sync.set({ limit: limit }, () => {
       // 设置成功之后页面关闭
       close();
     });
