@@ -21,7 +21,7 @@ const Options: FC<any> = (props: Props) => {
 
   React.useEffect(() => {
     // @ts-ignore
-    chrome.storage.sync.get("limit", (o: any) => {
+    chrome.storage.sync.get(["limit"], (o: any) => {
       console.log(o);
       setLimit(o.limit);
     });
