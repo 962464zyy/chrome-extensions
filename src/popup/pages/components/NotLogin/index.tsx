@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
-const NotLogin: FC<any> = (props: Props) => {
+const NotLogin = (props: Props) => {
   const navigate = useNavigate();
   const login = () => {
     console.log("login");

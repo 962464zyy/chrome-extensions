@@ -1,26 +1,28 @@
+import "../global.less";
+import "windi.css";
+
+import {
+  BrowserRouter,
+  NavLink,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 // import React, { useEffect, useState } from "react";
 // import ReactDOM from "react-dom";
 import { Button, Input, Tabs, Typography } from "antd";
-import "../global.less";
-import "windi.css";
 import { useEffect, useState } from "react";
+
+import Manage from "./pages/Manage";
+import NotFound from "./pages/components/NotFound";
+import NotLogin from "./pages/components/NotLogin";
+import SetPage from "./pages/Setting";
+import Tool from "./pages/Tool";
+import styles from "./index.module.less";
+import { tabsOption } from "./sourceData";
+
 import ReactDOM = require("react-dom");
 import React = require("react");
-import { tabsOption } from "./sourceData";
-import styles from "./index.module.less";
-import Tool from "./pages/Tool";
-import Manage from "./pages/Manage";
-import SetPage from "./pages/Setting";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  NavLink,
-  Outlet,
-} from "react-router-dom";
-import NotLogin from "./pages/components/NotLogin";
-import NotFound from "./pages/components/NotFound";
-const { Link } = Typography;
 
 const { TabPane } = Tabs;
 

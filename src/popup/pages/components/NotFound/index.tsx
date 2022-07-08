@@ -2,7 +2,7 @@ import { FC } from "react";
 
 type Props = {};
 
-const NotFound: FC<any> = (props: Props) => {
+const NotFound = (props: Props) => {
   return <div>NotFound</div>;
 };
 

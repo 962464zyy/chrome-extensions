@@ -2,7 +2,7 @@ import { FC } from "react";
 
 type Props = {};
 
-const Setting: FC<any> = (props: Props) => {
+const Setting = (props: Props) => {
   return <div>Setting</div>;
 };
 

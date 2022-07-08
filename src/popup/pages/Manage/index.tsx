@@ -1,11 +1,12 @@
 import { Button, Input } from "antd";
-import { FC } from "react";
 
 type Props = {};
 
-const Manage: FC<any> = (props: Props) => {
+const Manage = (props: Props) => {
   const openOptions = () => {
     console.log("openOptions");
+    // @ts-ignore
+    chrome.tabs.create({ url: "options.html" });
   };
   const send = () => {
     console.log("send");
