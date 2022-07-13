@@ -5,7 +5,8 @@
     "noImplicitAny": true,
     "module": "CommonJS",
     "target": "ES2015",
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "esModuleInterop": true
   },
   // "include": ["./src/**/*"],
   "exclude": ["node_modules", "dist"]

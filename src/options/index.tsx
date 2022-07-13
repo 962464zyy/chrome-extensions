@@ -1,8 +1,3 @@
-import { Button, Input } from "antd";
-import { changeConfirmLocale } from "antd/lib/modal/locale";
-import { FC, useState } from "react";
-import React = require("react");
-import ReactDOM = require("react-dom");
 import {
   BrowserRouter,
   NavLink,
@@ -10,9 +5,16 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import { Button, Input } from "antd";
+import { FC, useState } from "react";
+
 import Home1 from "./components/Home1";
 import Home2 from "./components/Home2";
 import NotFound from "./components/NotFound";
+import { changeConfirmLocale } from "antd/lib/modal/locale";
+
+import React = require("react");
+import ReactDOM = require("react-dom");
 
 type Props = {};
 
@@ -21,7 +23,7 @@ const Options: FC<any> = (props: Props) => {
 
   React.useEffect(() => {
     // @ts-ignore
-    chrome.storage.sync.get(["limit"], (o: any) => {
+    chrome.storage.local.get(["limit"], (o: any) => {
       console.log(o);
       setLimit(o.limit);
     });
@@ -29,7 +31,7 @@ const Options: FC<any> = (props: Props) => {
   const saveLimit = () => {
     console.log("saveLimit");
     //@ts-ignore
-    chrome.storage.sync.set({ limit: limit }, () => {
+    chrome.storage.local.set({ limit: limit }, () => {
       // 设置成功之后页面关闭
       close();
     });
@@ -37,7 +39,7 @@ const Options: FC<any> = (props: Props) => {
   const reset = () => {
     console.log("reset");
     //@ts-ignore
-    chrome.storage.sync.set({ total: 0 });
+    chrome.storage.local.set({ total: 0 });
   };
   return (
     <div>

@@ -8,14 +8,19 @@ type Props = {};
 export interface linkListType {
   href: string;
   children: string;
-  callback: () => void;
 }
 
 const Tool = (props: Props) => {
   const [limit, setLimit] = useState<number>(0);
+  const [contextMenusIndex, setContextMenusIndex] = useState<number>(1);
+
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log("我被执行了！tool");
+  });
+
   useEffect(() => {
     // @ts-ignore
-    chrome.storage.sync.get(["limit"], (o: any) => {
+    chrome.storage.local.get(["limit"], (o: any) => {
       console.log(o);
       setLimit(o.limit);
     });
@@ -39,35 +44,63 @@ const Tool = (props: Props) => {
     {
       href: "https://www.baidu.com/",
       children: "百度",
-      callback: () => {
-        console.log(chrome);
-        console.log(chrome.windows);
-        chrome.permissions.getAll().then((res: any) => {
-          console.log(res);
-        });
-      },
     },
     {
       href: "https://www.douyu.com/",
       children: "斗鱼",
-      callback: () => {},
     },
     {
       href: "https://www.huya.com/",
       children: "虎牙",
-      callback: () => {},
     },
     {
       href: "https://lpl.qq.com/",
       children: "lpl",
-      callback: () => {},
     },
   ];
+
+  const handleContextMenus = () => {
+    setContextMenusIndex(contextMenusIndex + 1);
+    // @ts-ignore
+    chrome.contextMenus.create({
+      title: "测试右键菜单" + contextMenusIndex,
+      onclick: function () {
+        console.log(`您点击了右键菜单${contextMenusIndex}！`);
+      },
+    });
+  };
+
+  const handleDeleteContextMenus = () => {
+    // @ts-ignore
+    chrome.contextMenus.removeAll();
+  };
+
+  const handleOpenHref = (href: string) => {
+    // @ts-ignore
+    chrome.tabs.create({ url: href });
+    // @ts-ignore
+    // chrome.windows.create(
+    //   {
+    //     url: href,
+    //   },
+    //   () => {
+    //     // @ts-ignore
+    //     chrome.windows.getCurrent((window: any) => {
+    //       console.log(window);
+    //     });
+    //   }
+    // );
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.link}>
         {linkList.map((link: linkListType) => (
-          <Link href={link.href} onClick={link.callback} key={link.href}>
+          <Link
+            href={link.href}
+            onClick={() => handleOpenHref(link.href)}
+            key={link.href}
+          >
             {link.children}
           </Link>
         ))}
@@ -78,6 +111,21 @@ const Tool = (props: Props) => {
       <div>
         <p>发送一个桌面通知</p>
         <Button onClick={sendNotifyOptions}>sendNotifyOptions</Button>
+      </div>
+      <div>
+        <Button onClick={handleContextMenus}>测试右键菜单</Button>
+        <Button onClick={handleDeleteContextMenus}>删除右键菜单</Button>
+        <Button
+          onClick={() => {
+            // @ts-ignore
+            console.log(chrome);
+            // chrome.tabs.executeScript({
+            //   file: "content_script.js",
+            // });
+          }}
+        >
+          注入
+        </Button>
       </div>
     </div>
   );

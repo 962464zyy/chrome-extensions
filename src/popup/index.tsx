@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import Manage from "./pages/Manage";
 import NotFound from "./pages/components/NotFound";
 import NotLogin from "./pages/components/NotLogin";
+import { RecoilRoot } from "recoil";
 import SetPage from "./pages/Setting";
 import Tool from "./pages/Tool";
 import styles from "./index.module.less";
@@ -54,18 +55,20 @@ const Popup = () => {
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/popup.html" element={<Popup />}>
-          <Route index element={<Tool />}></Route>
-          <Route path="tool" element={<Tool />}></Route>
-          <Route path="manage" element={<Manage />}></Route>
-          <Route path="set" element={<SetPage />}></Route>
-          <Route path="notLogin" element={<NotLogin />}></Route>
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <RecoilRoot>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/popup.html" element={<Popup />}>
+            <Route index element={<Tool />}></Route>
+            <Route path="tool" element={<Tool />}></Route>
+            <Route path="manage" element={<Manage />}></Route>
+            <Route path="set" element={<SetPage />}></Route>
+            <Route path="notLogin" element={<NotLogin />}></Route>
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById("root")
 );

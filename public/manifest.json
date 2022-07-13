@@ -12,14 +12,25 @@
     "default_title": "doubleyong的",
     "default_popup": "popup.html"
   },
-  "permissions": ["storage", "notifications", "tabs", "history"],
+
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["js/vendor.js"]
+      "js": ["js/vendor.js", "js/content_script.js"],
+      "run_at": "document_end"
     }
   ],
-  "host_permissions": ["<all_urls>"],
   "options_page": "options.html",
-  "background": {}
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "permissions": [
+    "storage",
+    "contextMenus",
+    "tabs",
+    "notifications",
+    "cookies",
+    "http://*/*",
+    "https://*/*"
+  ]
 }
