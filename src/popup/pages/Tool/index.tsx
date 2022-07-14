@@ -115,7 +115,7 @@ const Tool = (props: Props) => {
       <div>
         <Button onClick={handleContextMenus}>测试右键菜单</Button>
         <Button onClick={handleDeleteContextMenus}>删除右键菜单</Button>
-        <Button
+        {/* <Button
           onClick={() => {
             // @ts-ignore
             console.log(chrome);
@@ -125,7 +125,7 @@ const Tool = (props: Props) => {
           }}
         >
           注入
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

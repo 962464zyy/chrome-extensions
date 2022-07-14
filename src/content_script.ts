@@ -12,6 +12,7 @@ const createPage = (textContent: string) => {
   container.style.bottom = "0";
   container.style.right = "0";
   container.style.zIndex = "100";
+  container.id = "doubleyongDeDiv";
   document.body.append(container);
 };
 // createPage();
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // createPage("textContent");
 });
 if (location.href == "http://test.a.newrank.cn/center/#/user") {
-  console.log(`张勇勇的插件插的`);
+  console.log(`doubleyong的插件插的`);
   const titleDomList = document.getElementsByTagName("title");
   let titles = "";
   Array.from(titleDomList).forEach((item: any) => {
@@ -44,7 +45,12 @@ chrome.runtime.onMessage.addListener(function (
   sendResponse: any
 ) {
   console.log("接收来自popup或者background的消息", request, sender);
-  createPage(request.text);
+  const div = document.getElementById("doubleyongDeDiv");
+  if (div) {
+    div.textContent = request.text;
+  } else {
+    createPage(request.text);
+  }
   sendResponse(
     "我是content_script,我收到你的消息了：" + JSON.stringify(request)
   );
