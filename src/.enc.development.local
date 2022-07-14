@@ -1,2 +1,0 @@
-PLASMO_PUBLIC_ENV='development'
-PLASMO_GATEWAY_HOST=http://test-gw.newrank.cn:18080/api
