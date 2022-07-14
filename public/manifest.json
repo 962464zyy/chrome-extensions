@@ -1,5 +1,5 @@
 {
-  "name": "doubleyong",
+  "name": "doubleyongde",
   "description": "第一个chrome extensions",
   "version": "1.0.0",
   "manifest_version": 3,
@@ -24,13 +24,5 @@
   "background": {
     "service_worker": "js/background.js"
   },
-  "permissions": [
-    "storage",
-    "contextMenus",
-    "tabs",
-    "notifications",
-    "cookies",
-    "http://*/*",
-    "https://*/*"
-  ]
+  "permissions": ["storage", "contextMenus", "tabs", "notifications", "cookies"]
 }
