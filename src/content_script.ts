@@ -39,19 +39,17 @@ if (location.href == "http://test.a.newrank.cn/center/#/user") {
 
 // 接收来自popup或者background的消息
 // @ts-ignore
-chrome.runtime.onMessage.addListener(function (
-  request: any,
-  sender: any,
-  sendResponse: any
-) {
-  console.log("接收来自popup或者background的消息", request, sender);
-  const div = document.getElementById("doubleyongDeDiv");
-  if (div) {
-    div.textContent = request.text;
-  } else {
-    createPage(request.text);
+chrome.runtime.onMessage.addListener(
+  (request: any, sender: any, sendResponse: any) => {
+    console.log("接收来自popup或者background的消息", request, sender);
+    const div = document.getElementById("doubleyongDeDiv");
+    if (div) {
+      div.textContent = request.text;
+    } else {
+      createPage(request.text);
+    }
+    sendResponse(
+      "我是content_script,我收到你的消息了：" + JSON.stringify(request)
+    );
   }
-  sendResponse(
-    "我是content_script,我收到你的消息了：" + JSON.stringify(request)
-  );
-});
+);

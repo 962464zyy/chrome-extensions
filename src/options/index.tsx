@@ -19,7 +19,7 @@ import ReactDOM = require("react-dom");
 type Props = {};
 
 const Options: FC<any> = (props: Props) => {
-  const [limit, setLimit] = useState<number>(0);
+  const [limit, setLimit] = useState<string>("");
 
   React.useEffect(() => {
     // @ts-ignore
@@ -29,17 +29,21 @@ const Options: FC<any> = (props: Props) => {
     });
   }, []);
   const saveLimit = () => {
-    console.log("saveLimit");
+    console.log("saveLimit", limit);
     //@ts-ignore
     chrome.storage.local.set({ limit: limit }, () => {
       // 设置成功之后页面关闭
-      close();
+      // @ts-ignore
+      // setTimeout(() => {
+      //   close();
+      // }, 3000);
+      // @ts-ignore
     });
   };
   const reset = () => {
     console.log("reset");
     //@ts-ignore
-    chrome.storage.local.set({ total: 0 });
+    chrome.storage.local.set({ limit: "" });
   };
   return (
     <div>
@@ -52,9 +56,10 @@ const Options: FC<any> = (props: Props) => {
         <h2>预算管理选项</h2>
         <h3>
           预算限制：
-          <Input value={limit} />
-          {/* <Input type="submit" id="setLimit" value="保存限制" />
-            <Input type="submit" id="resetTotal" value="清除总金额" /> */}
+          <Input
+            value={limit}
+            onChange={(e: any) => setLimit(e.target.value)}
+          />
           <Button onClick={saveLimit}>保存限制</Button>
           <Button onClick={reset}>清除总金额</Button>
         </h3>

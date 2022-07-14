@@ -1,6 +1,6 @@
 {
   "name": "doubleyongde",
-  "description": "第一个chrome extensions",
+  "description": "第一个chrome extensions de ",
   "version": "1.0.0",
   "manifest_version": 3,
   "icons": {
@@ -17,12 +17,20 @@
     {
       "matches": ["<all_urls>"],
       "js": ["js/vendor.js", "js/content_script.js"],
-      "run_at": "document_end"
+      "run_at": "document_start"
     }
   ],
   "options_page": "options.html",
   "background": {
     "service_worker": "js/background.js"
   },
-  "permissions": ["storage", "contextMenus", "tabs", "notifications", "cookies"]
+  "permissions": [
+    "storage",
+    "contextMenus",
+    "tabs",
+    "notifications",
+    "cookies",
+    "webRequest",
+    "proxy"
+  ]
 }

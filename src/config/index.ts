@@ -1,5 +1,7 @@
 /* global process */
-// const env = process.env.PLASMO_PUBLIC_ENV;
+// const env = process.env;
+// console.log("env", env);
+console.log("process", process);
 
 // export const config = {
 //   development: {

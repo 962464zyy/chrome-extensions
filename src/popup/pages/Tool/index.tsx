@@ -61,13 +61,16 @@ const Tool = (props: Props) => {
 
   const handleContextMenus = () => {
     setContextMenusIndex(contextMenusIndex + 1);
+    // console.log(chrome.contextMenus);
     // @ts-ignore
-    chrome.contextMenus.create({
-      title: "测试右键菜单" + contextMenusIndex,
-      onclick: function () {
-        console.log(`您点击了右键菜单${contextMenusIndex}！`);
-      },
-    });
+    // chrome.contextMenus.create({
+    //   title: "测试右键菜单" + contextMenusIndex,
+    //   id: contextMenusIndex.toString(),
+    //   onclick:  () => {
+    //     console.log(`您点击了右键菜单${contextMenusIndex}！`);
+    //   },
+    // });
+    // chrome.contextMenus.onClicked.addListener();
   };
 
   const handleDeleteContextMenus = () => {

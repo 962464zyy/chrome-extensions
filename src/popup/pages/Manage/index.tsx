@@ -11,31 +11,21 @@ const Manage = (props: Props) => {
     // @ts-ignore
     chrome.tabs.create({ url: "options.html" });
   };
-  const send = () => {
-    console.log("send");
-  };
-  function sendMessageToContentScript(
-    message: any,
-    callback: (response: any) => void
-  ) {}
 
-  function sendMessage() {
+  const sendMessage = () => {
     console.log(inputValue);
     // @ts-ignore
-    chrome.tabs.query(
-      { active: true, currentWindow: true },
-      function (tabs: any) {
-        // @ts-ignore
-        chrome.tabs.sendMessage(
-          tabs[0]?.id!,
-          { text: inputValue },
-          (response: any) => {
-            console.log("response", response);
-          }
-        );
-      }
-    );
-  }
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs: any) => {
+      // @ts-ignore
+      chrome.tabs.sendMessage(
+        tabs[0]?.id!,
+        { text: inputValue },
+        (response: any) => {
+          console.log("response", response);
+        }
+      );
+    });
+  };
 
   return (
     <div>
